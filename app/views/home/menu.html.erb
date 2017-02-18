@@ -1,0 +1,44 @@
+<h1>Menu</h1>
+
+<div class="btn-group">
+	<% @sections.each do |section| %>
+	<%= link_to section.name, menu_path(section_id: section.id), class: "btn #{params[:section_id] == section.id.to_s ? 'btn-primary' : 'btn-secondary '}" %>
+	<% end %>
+</div>
+
+<% if @current_section %>
+<table class="table">
+	<div class="thead">
+		<tr>
+			<td>Name</td>
+			<td>Description</td>
+			<td>Price</td>
+			<td>Image</td>
+			<td>Action</td>
+		</tr>
+	</div>
+	<div class="tbody">
+		<% @current_section.food_items.each do |item| %>
+		<tr>
+			<td>
+				<%= item.name %>
+			</td>
+			<td>
+				<%= item.description %>
+			</td>
+			<td>
+				<%= number_to_currency item.price %>
+			</td>
+			<td>
+			<%= image_tag item.image_url_or_default %>
+			</td>
+			<td>
+				<%= link_to 'Add to cart', new_order_path(food_item_id: item.id), class: 'btn btn-warning'%>
+			</td>
+		</tr>
+		<% end %>
+	</div>
+</table>
+<% else %>
+<div class="alert alert-danger">Please select a section...</div>
+<% end %>
