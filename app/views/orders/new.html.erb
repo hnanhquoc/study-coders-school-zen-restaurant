@@ -1,13 +1,67 @@
 <h1>New order for <%= @food_item.name %></h1>
 
 <% if @order.errors.presence %>
-	<div class="alert alert-danger"><%= @order.errors.full_messages.to_sentence %></div>
+<div class="alert alert-danger"><%= @order.errors.full_messages.to_sentence %></div>
 <% end %>
 
-<%= form_for @order, url: orders_path(food_item_id: @food_item.id) do |f| %>
-	<div class="form-group">
-		<%= f.label :quantity %>
-		<%= f.number_field :quantity, class: 'form-control' %>
+<div class="row">
+	<div class="col-sm-6">
+		<table class="table table-responsive">
+			<div class="thead">
+				<tr>
+					<td>Name</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Total</td>
+				</tr>
+			</div>
+			<div class="tbody">
+				<%= form_for [@food_item, @order] do |f| %>
+				<tr>
+					<td><%= @food_item.name %></td>
+					<td><%= @food_item.price %></td>
+					<td><%= f.number_field :quantity, class: 'form-control col-sm-3' %></td>
+					<td></td>
+				</tr>
+				<% end %>
+			</div>
+		</table>
+		
 	</div>
-	<%= f.submit nil, class: 'btn btn-primary' %>
-<% end %>
+	<div class="col-sm-6">
+		<div class="card card-block">
+			<h4 class="card-title">Shipping Informantion</h4>
+
+			<div class="form-group">
+				<label for="nameInput">Name:</label>
+				<input type="text" class="form-control" id="nameInput" aria-describedby="Name" placeholder="Enter your name">
+			</div>
+
+			<div class="form-group">
+				<label for="nameInput">Email:</label>
+				<input type="email" class="form-control" id="emailInput" aria-describedby="Name" placeholder="Enter your mail">
+				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+
+			<div class="form-group">
+				<label for="telInput">Phone:</label>
+				<input type="email" class="form-control" id="telInput" aria-describedby="emailHelp" placeholder="Enter your phone">
+			</div>
+
+			<div class="form-group">
+				<label for="addrInput">Address</label>
+				<textarea class="form-control" id="addrInput" rows="3"></textarea>
+			</div>
+
+			<div class="form-check">
+				<label class="form-check-label">
+					<input type="checkbox" class="form-check-input">
+					Also save my address
+				</label>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</div>
+</div>
+

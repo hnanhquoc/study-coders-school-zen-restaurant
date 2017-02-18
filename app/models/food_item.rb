@@ -9,4 +9,8 @@ class FoodItem < ApplicationRecord
 			"http://loremflickr.com/320/240/#{name .gsub(' ', '')}"
 		end
 	end
+
+	def self.search(search)
+		where("name ILIKE ?", "%#{search}%") 
+	end
 end

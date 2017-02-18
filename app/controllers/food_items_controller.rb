@@ -4,7 +4,12 @@ class FoodItemsController < ApplicationController
   # GET /food_items
   # GET /food_items.json
   def index
-    @food_items = FoodItem.all
+    # @food_items = FoodItem.all
+    if params[:search]
+      @food_items = FoodItem.search(params[:search]).order("created_at DESC")
+    else
+      @food_items = FoodItem.all.order("created_at DESC")
+    end
   end
 
   # GET /food_items/1

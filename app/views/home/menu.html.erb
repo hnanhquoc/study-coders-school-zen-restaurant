@@ -33,7 +33,7 @@
 			<%= image_tag item.image_url_or_default %>
 			</td>
 			<td>
-				<%= link_to 'Add to cart', new_order_path(food_item_id: item.id), class: 'btn btn-warning'%>
+				<%= link_to 'Add to cart', new_food_item_order_path(item), class: 'btn btn-warning'%>
 			</td>
 		</tr>
 		<% end %>
