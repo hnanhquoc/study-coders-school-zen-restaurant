@@ -1,25 +1,60 @@
 <h1>Menu</h1>
 
-<div class="btn-group">
-	<% @sections.each do |section| %>
-	<%= link_to section.name, menu_path(section_id: section.id), class: "btn #{params[:section_id] == section.id.to_s ? 'btn-primary' : 'btn-secondary '}" %>
-	<% end %>
-</div>
+<div class="card">
+	<div class="card-header">
+		<ul class="nav nav-tabs card-header-tabs pull-xs-left">
+			<% @sections.each do |section| %>
+			<li class="nav-item">
+				<%= link_to section.name, menu_path(section_id: section.id), class: "nav-link #{params[:section_id] == section.id.to_s ? 'active' : ''}" %>
+			</li>
+			<% end %>
+			<div class="btn-group" style="position: absolute;right: 10px;">
+				<button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Sort
+				</button>
 
-<% if @current_section %>
-<table class="table">
-	<div class="thead">
-		<tr>
-			<td>Name</td>
-			<td>Description</td>
-			<td>Price</td>
-			<td>Image</td>
-			<td>Action</td>
-		</tr>
+				<div class="dropdown-menu">
+					<%= form_tag nil, method: 'get' do %>
+					<%= hidden_field_tag :section_id, params[:section_id] %>
+					<%= hidden_field_tag :sort_column, 'name' %>
+					<%= hidden_field_tag :sort_direction, 'asc' %>
+					<%= submit_tag 'Most view', class: 'dropdown-item' %>
+					<% end %>
+					<div class="dropdown-divider"></div>
+					<%= form_tag nil, method: 'get' do %>
+					<%= hidden_field_tag :section_id, params[:section_id] %>
+					<%= hidden_field_tag :sort_column, 'name' %>
+					<%= hidden_field_tag :sort_direction, 'asc' %>
+					<%= submit_tag 'A -> Z', class: 'dropdown-item' %>
+					<% end %>
+					<%= form_tag nil, method: 'get' do %>
+					<%= hidden_field_tag :section_id, params[:section_id] %>
+					<%= hidden_field_tag :sort_column, 'name' %>
+					<%= hidden_field_tag :sort_direction, 'desc' %>
+					<%= submit_tag 'Z -> A', class: 'dropdown-item' %>
+					<% end %>
+					<div class="dropdown-divider"></div>
+					<%= form_tag nil, method: 'get' do %>
+					<%= hidden_field_tag :section_id, params[:section_id] %>
+					<%= hidden_field_tag :sort_column, 'price' %>
+					<%= hidden_field_tag :sort_direction, 'asc' %>
+					<%= submit_tag 'Price Low -> High', class: 'dropdown-item' %>
+					<% end %>
+					<div class="dropdown-divider"></div>
+					<%= form_tag nil, method: 'get' do %>
+					<%= hidden_field_tag :section_id, params[:section_id] %>
+					<%= hidden_field_tag :sort_column, 'price' %>
+					<%= hidden_field_tag :sort_direction, 'desc' %>
+					<%= submit_tag 'Price High -> Low', class: 'dropdown-item' %>
+					<% end %>
+				</div>
+			</div>
+		</ul>
 	</div>
-	<div class="tbody">
-		<% @current_section.food_items.each do |item| %>
-		<tr>
+	<div class="card-block">
+		<% if @food_items %>
+		<% @food_items.each do |item| %>
+		<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 			<td>
 				<%= item.name %>
 			</td>
@@ -30,15 +65,15 @@
 				<%= number_to_currency item.price %>
 			</td>
 			<td>
-			<%= image_tag item.image_url_or_default %>
+				<%= image_tag item.image_url_or_default %>
 			</td>
 			<td>
 				<%= link_to 'Add to cart', new_food_item_order_path(item), class: 'btn btn-warning'%>
 			</td>
-		</tr>
+		</div>
+		<% end %>
+		<% else %>
+		<div class="alert alert-danger">No food_items found</div>
 		<% end %>
 	</div>
-</table>
-<% else %>
-<div class="alert alert-danger">Please select a section...</div>
-<% end %>
+</div>
