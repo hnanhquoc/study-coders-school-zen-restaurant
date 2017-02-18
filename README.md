@@ -4,7 +4,7 @@
 
 Submitted by: **Quoc**
 
-Time spent: **2** hours spent in total
+Time spent: **6** hours spent in total
 
 URL: **heroku-app-url**
 
@@ -20,8 +20,8 @@ URL: **heroku-app-url**
   * [x] Lunch
   * [x] Dinner
   * [x] Drinks
-* [ ] User should see at least 5 food items in each section.
-* [ ] Each food item should have the following fields:
+* [x] User should see at least 5 food items in each section.
+* [x] Each food item should have the following fields:
   * Name (Canh Chua)
   * Description (Delicious fish soup)
   * Price (VND)
@@ -31,7 +31,7 @@ URL: **heroku-app-url**
 * [ ] User can sort menu items by “alphabetical”, “price low to high”, and “price high to low”.
 * [ ] User should be able to search for a menu item and see results.
 * [ ] Clicking on an item in the menu brings up its detail, where you see the description and a larger picture.
-* [ ] User can click “order” on a menu item to go to a “Create Order” page.
+* [x] User can click “order” on a menu item to go to a “Create Order” page.
 * [ ] User is able to fill in their name, phone number, and address.
 * [ ] User is taken to a “Thank you for your order page” that lists the name of item, the total cost (delivery should cost 20,000 VND), the user’s name, the user’s address, and the time the order was created in human-readable format (for example, Tuesday, December 1, 15:25).
 

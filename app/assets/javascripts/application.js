@@ -16,3 +16,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(".navbar-nav a").on("click", function(){
+   $(".navbar-nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
