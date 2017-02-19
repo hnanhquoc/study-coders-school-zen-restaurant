@@ -1,0 +1,19 @@
+<div class="bg"></div>
+<div class="jumbotron">
+	<h1>Thank you <%= @order.name %> for using our service!</h1>
+	<p class="lead">You have successful ordered the item below: </p>
+	<div card card-block>
+		<ul>
+			<li>
+				<%= @food_item.name %>	<br/>
+				Shipping cost: <%= number_with_delimiter(number_with_precision(20000, :precision => 0), :delimiter => ',') %>&nbsp;₫ <br/>
+				Total: <%= number_with_delimiter(number_with_precision(@food_item.promo_price, :precision => 0), :delimiter => ',') %>&nbsp;₫ x 
+				<%= number_with_precision(@order.quantity, :precision => 0) %> + Shipping cost = 
+				<%= number_with_delimiter(number_with_precision(@food_item.promo_price * @order.quantity + 20000, :precision => 0), :delimiter => ',') %>&nbsp;₫ <br/>
+				Time: <%= @order.created_at.strftime("%H:%M %d/%m/%Y") %>
+			</li>
+		</ul>
+	</div>
+	<%= link_to '<i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back'.html_safe, menu_path, class: 'btn btn-lg btn-success' %>
+</div>
+

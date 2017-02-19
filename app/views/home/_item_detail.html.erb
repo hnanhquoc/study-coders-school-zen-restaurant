@@ -1,0 +1,16 @@
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-body" style="padding: 0;position: relative;">
+			<%= image_tag @selected_food_item.image_url_or_default, {'style' => 'top: 0; left: 0; width: 100%; z-index: -1;position: absolute;opacity: .9;'} %>
+			<div style="background:transparent; position: absolute;width: 100%;">
+				<button type="button" class="btn btn-lg btn-link" data-dismiss="modal" style="top: 0; right: 0; cursor: pointer; float:right;"><i class="fa fa-2x fa-times" aria-hidden="true"></i></button>
+				<div style="vertical-align: middle;color: white !important;text-shadow: black 0.3em 0.3em 0.3em;margin-top: 25%;margin-left: 25%;">
+					<h3><strong><%= @selected_food_item.name %></strong></h3>
+					<h5><%= @selected_food_item.description %></h5>
+					<h5><%= number_with_delimiter(number_with_precision(@selected_food_item.promo_price, :precision => 0), :delimiter => ',') %>&nbsp;₫  </h5>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
