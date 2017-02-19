@@ -27,6 +27,9 @@ class HomeController < ApplicationController
   def item_detail
     if params[:item_detail_id].present?
       @selected_food_item = FoodItem.find(params[:item_detail_id])
+      puts @selected_food_item.views
+      @selected_food_item.views += 1
+      @selected_food_item.save!
     end
 
     respond_to do |format|
