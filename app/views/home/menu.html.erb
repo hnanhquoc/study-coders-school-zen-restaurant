@@ -1,6 +1,6 @@
 <h1>Menu</h1>
 
-<div class="card">
+<div class="card" style="margin-bottom: 20px;">
 	<div class="card-header">
 		<ul class="nav nav-tabs card-header-tabs pull-xs-left">
 			<% @sections.each do |section| %>
@@ -12,7 +12,7 @@
 				<button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
 				</button>
- 
+
 				<div class="dropdown-menu dropdown-menu-right">
 					<%= form_tag nil, method: 'get' do %>
 					<%= hidden_field_tag :section_id, params[:section_id] %>
@@ -55,8 +55,9 @@
 		<% @food_items.each do |item| %>
 		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 			<div class="product-item">
-			<div style="margin: 0 20px 0 20px;">
-				<div  style="cursor: pointer;" >
+				<div style="margin: 0 20px 0 20px;">
+					<%= link_to(item_detail_path(item_detail_id: item.id), remote: true, method: 'POST') do %>
+					<div  style="cursor: pointer;" >
 					<span class="image">
 						<%= image_tag item.image_url_or_default %>
 					</span>
@@ -84,9 +85,10 @@
 						</span>
 					</p>
 					<p class="review">(16 nhận xét)</p>
+					</div>
+					<% end %>
+					<%= link_to '<img src="https://vcdn.tikicdn.com/assets/img/ico10.png" height="14" width="18" alt="">Add to cart'.html_safe, new_food_item_order_path(item), class: 'btn btn-lg btn-block btn-outline-warning add-to-cart'%>
 				</div>
-				<%= link_to '<img src="https://vcdn.tikicdn.com/assets/img/ico10.png" height="14" width="18" alt="">Add to cart'.html_safe, new_food_item_order_path(item), class: 'btn btn-lg btn-block btn-outline-warning add-to-cart'%>
-			</div>
 			</div>
 		</div>
 		<% end %>
@@ -94,4 +96,8 @@
 		<div class="alert alert-danger">No food_items found</div>
 		<% end %>
 	</div>
+</div>
+
+<div class="modal fade" id="item-detail-form" tabindex="-1" role="dialog" aria-labelledby="item-detail-title" aria-hidden="true">
+
 </div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	
 	get 'menu' => 'home#menu'
 	get 'contact_us' => 'home#contact_us'
+	post 'item_detail' => 'home#item_detail'
 	
 	root 'home#index'
 
