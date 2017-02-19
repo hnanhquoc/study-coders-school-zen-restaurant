@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219050922) do
+ActiveRecord::Schema.define(version: 20170219063821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,30 +29,21 @@ ActiveRecord::Schema.define(version: 20170219050922) do
     t.index ["section_id"], name: "index_food_items_on_section_id", using: :btree
   end
 
-  create_table "impressions", force: :cascade do |t|
-    t.string   "impressionable_type"
-    t.integer  "impressionable_id"
-    t.integer  "user_id"
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.string   "view_name"
-    t.string   "request_hash"
-    t.string   "ip_address"
-    t.string   "session_hash"
-    t.text     "message"
-    t.text     "referrer"
-    t.text     "params"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
-    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
-    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
-    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
-    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index", using: :btree
-    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
-    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
-    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
-    t.index ["user_id"], name: "index_impressions_on_user_id", using: :btree
+  create_table "order_bills", force: :cascade do |t|
+    t.decimal  "subtotal",        precision: 12, scale: 3
+    t.decimal  "tax",             precision: 12, scale: 3
+    t.decimal  "shipping",        precision: 12, scale: 3
+    t.decimal  "total",           precision: 12, scale: 3
+    t.integer  "order_status_id"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["order_status_id"], name: "index_order_bills_on_order_status_id", using: :btree
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -63,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170219050922) do
     t.text     "address"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "email"
     t.index ["food_item_id"], name: "index_orders_on_food_item_id", using: :btree
   end
 
@@ -74,5 +66,6 @@ ActiveRecord::Schema.define(version: 20170219050922) do
   end
 
   add_foreign_key "food_items", "sections"
+  add_foreign_key "order_bills", "order_statuses"
   add_foreign_key "orders", "food_items"
 end
