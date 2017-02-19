@@ -12,6 +12,12 @@ class FoodItemsController < ApplicationController
     end
   end
 
+  def search
+    if params[:search]
+      @food_items = FoodItem.search(params[:search]).order("created_at DESC")
+    end
+  end
+
   # GET /food_items/1
   # GET /food_items/1.json
   def show

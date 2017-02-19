@@ -8,12 +8,12 @@
 				<%= link_to section.name, menu_path(section_id: section.id), class: "nav-link #{params[:section_id] == section.id.to_s ? 'active' : ''}" %>
 			</li>
 			<% end %>
-			<div class="btn-group" style="position: absolute;right: 10px;">
-				<button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Sort
+			<div class="btn-group" style="position: absolute;right: 10px;vertical-align: middle;">
+				<button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
 				</button>
-
-				<div class="dropdown-menu">
+ 
+				<div class="dropdown-menu dropdown-menu-right">
 					<%= form_tag nil, method: 'get' do %>
 					<%= hidden_field_tag :section_id, params[:section_id] %>
 					<%= hidden_field_tag :sort_column, 'name' %>
@@ -25,51 +25,69 @@
 					<%= hidden_field_tag :section_id, params[:section_id] %>
 					<%= hidden_field_tag :sort_column, 'name' %>
 					<%= hidden_field_tag :sort_direction, 'asc' %>
-					<%= submit_tag 'A -> Z', class: 'dropdown-item' %>
+					<%= submit_tag 'Name: A -> Z', class: 'dropdown-item' %>
 					<% end %>
 					<%= form_tag nil, method: 'get' do %>
 					<%= hidden_field_tag :section_id, params[:section_id] %>
 					<%= hidden_field_tag :sort_column, 'name' %>
 					<%= hidden_field_tag :sort_direction, 'desc' %>
-					<%= submit_tag 'Z -> A', class: 'dropdown-item' %>
+					<%= submit_tag 'Name: Z -> A', class: 'dropdown-item' %>
 					<% end %>
 					<div class="dropdown-divider"></div>
 					<%= form_tag nil, method: 'get' do %>
 					<%= hidden_field_tag :section_id, params[:section_id] %>
 					<%= hidden_field_tag :sort_column, 'price' %>
 					<%= hidden_field_tag :sort_direction, 'asc' %>
-					<%= submit_tag 'Price Low -> High', class: 'dropdown-item' %>
+					<%= submit_tag 'Price: Low -> High', class: 'dropdown-item' %>
 					<% end %>
-					<div class="dropdown-divider"></div>
 					<%= form_tag nil, method: 'get' do %>
 					<%= hidden_field_tag :section_id, params[:section_id] %>
 					<%= hidden_field_tag :sort_column, 'price' %>
 					<%= hidden_field_tag :sort_direction, 'desc' %>
-					<%= submit_tag 'Price High -> Low', class: 'dropdown-item' %>
+					<%= submit_tag 'Price: High -> Low', class: 'dropdown-item' %>
 					<% end %>
 				</div>
 			</div>
 		</ul>
 	</div>
-	<div class="card-block">
+	<div class="card-block row">
 		<% if @food_items %>
 		<% @food_items.each do |item| %>
-		<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-			<td>
-				<%= item.name %>
-			</td>
-			<td>
-				<%= item.description %>
-			</td>
-			<td>
-				<%= number_to_currency item.price %>
-			</td>
-			<td>
-				<%= image_tag item.image_url_or_default %>
-			</td>
-			<td>
-				<%= link_to 'Add to cart', new_food_item_order_path(item), class: 'btn btn-warning'%>
-			</td>
+		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+			<div class="product-item">
+			<div style="margin: 0 20px 0 20px;">
+				<div  style="cursor: pointer;" >
+					<span class="image">
+						<%= image_tag item.image_url_or_default %>
+					</span>
+					<span class="title">
+						<%= item.name %>
+					</span>
+					<p class="price-sale"><%= number_with_delimiter(number_with_precision(item.promo_price, :precision => 0), :delimiter => ',') %>&nbsp;₫                                    
+						<span class="sale-tag sale-tag-square">-<%= number_with_precision(item.sale, :precision => 0) %>%</span>
+						<span class="price-regular"><%= number_with_delimiter(number_with_precision(item.price, :precision => 0), :delimiter => ',') %>&nbsp;₫</span>
+					</p>
+					<p class="rating">
+						<span class="rating-content">
+							<i class="star"></i>
+							<i class="star"></i>
+							<i class="star"></i>
+							<i class="star"></i>
+							<i class="star"></i>
+							<span style="width:91%">
+								<i class="star"></i>
+								<i class="star"></i>
+								<i class="star"></i>
+								<i class="star"></i>
+								<i class="star"></i>
+							</span>
+						</span>
+					</p>
+					<p class="review">(16 nhận xét)</p>
+				</div>
+				<%= link_to '<img src="https://vcdn.tikicdn.com/assets/img/ico10.png" height="14" width="18" alt="">Add to cart'.html_safe, new_food_item_order_path(item), class: 'btn btn-lg btn-block btn-outline-warning add-to-cart'%>
+			</div>
+			</div>
 		</div>
 		<% end %>
 		<% else %>

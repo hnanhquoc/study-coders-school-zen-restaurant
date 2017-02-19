@@ -1,6 +1,9 @@
-<h1>Welcome to Zen Restaurant</h1>
+<div class="bg"></div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Welcome to Zen Restaurant</h1>
+    <p class="lead">We serve a variety of delicious vegetables food and drinks. Let us help you find a peaceful moment...</p>
+    <%= link_to 'Menu <i class="fa fa-long-arrow-right" aria-hidden="true"></i>'.html_safe, menu_path, class: 'btn btn-lg btn-success' %>
 
-<div class="jumbotron">
-	<%= link_to 'Menu', menu_path, class: 'btn btn-secondary' %>
-<%= link_to 'Contact us', contact_us_path, class: 'btn btn-secondary' %>
+  </div>
 </div>

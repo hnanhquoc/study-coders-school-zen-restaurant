@@ -17,7 +17,18 @@
 //= require turbolinks
 //= require_tree .
 
-$(".navbar-nav a").on("click", function(){
-   $(".navbar-nav").find(".active").removeClass("active");
-   $(this).parent().addClass("active");
+$(document).ready(function() {
+	$(".navbar-nav a").on("click", function(){
+		$(".navbar-nav").find(".active").removeClass("active");
+		$(this).parent().addClass("active");
+	});
+});
+var jumboHeight = $('.jumbotron').outerHeight();
+function parallax(){
+    var scrolled = $(window).scrollTop();
+    $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+}
+
+$(window).scroll(function(e){
+    parallax();
 });

@@ -2,6 +2,10 @@ class FoodItem < ApplicationRecord
 	belongs_to :section
 	has_many :orders
 
+	def promo_price
+		price * (100 - sale)/100
+	end
+
 	def image_url_or_default
 		if !image_url.nil? && !image_url.blank?
 			image_url

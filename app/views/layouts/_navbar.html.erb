@@ -2,15 +2,18 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="<%= root_path %>">Zen</a>
+  <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'zen_circle.png', height: '32', width: '32', alt: 'Zen Restaurant' %></a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= menu_path %>">Menu <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<%= menu_path %>"><i class="fa fa-bars" aria-hidden="true"></i> Menu <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= contact_us_path %>">Contact us</a>
+        <a class="nav-link" href="<%= contact_us_path %>"><i class="fa fa-phone" aria-hidden="true"></i> Contact us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= contact_us_path %>"><img src="https://vcdn.tikicdn.com/assets/img/ico10.png" height="14" width="18" alt=""> Order</a>
       </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
@@ -18,9 +21,28 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
 
-    <%= form_tag(food_items_path, :method => "get", class: 'form-inline my-2 my-lg-0', id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Food", class: 'form-control mr-sm-2' %>
-    <%= submit_tag "Search", :name => nil, class: 'btn btn-outline-success my-2 my-sm-0' %>
+    <%= form_tag(menu_path, :method => "get", class: 'form-inline my-2 my-lg-0', id: "search-form") do %>
+<div class="input-group">
+<div class="input-group-btn">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          All Sections
+        </button>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">All</a>
+        <div role="separator" class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Breakfast</a>
+          <a class="dropdown-item" href="#">Lunch</a>
+          <a class="dropdown-item" href="#">Dinner</a>
+          <a class="dropdown-item" href="#">Drinks</a>
+        </div>
+      </div>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Food", class: 'form-control' %>
+    <span class="input-group-btn">
+    <%= button_tag(type: "submit", class: "btn btn-outline-success") do %>
+    <i class="fa fa-search" aria-hidden="true"></i>
+<% end %>
+</span>
+</div>
     <% end %>
 
   </div>

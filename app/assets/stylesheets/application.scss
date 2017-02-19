@@ -1,11 +1,13 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "font-awesome";
 
 .product-item {
 	display: block;
 	padding: 8px 0;
 	border: 1px solid transparent;
 	position: relative;
+	margin-bottom: 30px;
 }
 .product-item .tag-img img {
 	max-width: 100%}
@@ -14,7 +16,7 @@
 	position: relative;
 	text-align: center;
 	background: #fff;
-	height: 175px;
+	height: 240px;
 	white-space: nowrap;
 }
 .product-item .image:before {
@@ -23,38 +25,17 @@
 	vertical-align: middle;
 	width: 0;
 	height: 100%}
+
 .product-item .image img {
 	border: none;
 	position: relative;
 	width: 100%;
-	max-width: 175px;
+	max-width: 320px;
 }
-.product-item .image .promo {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	font-size: .87rem;
-	text-transform: uppercase;
-	color: #e62446;
-	text-align: right;
-	border-top: 2px solid #e62446;
-	border-bottom: 2px solid #e62446;
-	line-height: 1.3;
-	white-space: nowrap;
-}
-.product-item .image .promo span {
-	display: block;
-}
-.product-item .image .promo span .impt {
-	font-size: 1.2rem;
-	vertical-align: bottom;
-	font-weight: 700;
-	font-style: normal;
-}
+
 .product-item .title {
 	display: block;
-	font-size: 13px;
+	font-size: 22px;
 	color: #000;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -70,38 +51,10 @@
 .product-item p {
 	padding: 5px 0 0;
 	color: #777;
-	font-size: 13px;
+	font-size: 16px;
 	text-align: left;
 	margin: 0;
 }
-.product-item .notify {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	color: green;
-	font-weight: 700;
-	font-size: 12px;
-}
-.product-item .notify a {
-	font-size: 11px;
-	width: 100%;
-	color: #fff;
-	display: block;
-	font-weight: 400;
-	padding: 4px 2px;
-	text-align: center;
-	background: #44AC52;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-ms-border-radius: 2px;
-	-o-border-radius: 2px;
-	border-radius: 2px;
-}
-.product-item .notify a:hover {
-	opacity: .8;
-	text-decoration: none;
-}
-
 
 .product-item .rating, .product-item .review {
 	font-size: 12px;
@@ -236,7 +189,7 @@
 	color: red;
 }
 .product-item .add-to-cart {
-	font-size: 11px;
+	font-size: 13px;
 	padding: 5px;
 	outline-color: #ccc;
 	margin: 5px auto 0;
@@ -252,42 +205,44 @@
 	display: inline-block;
 	margin-right: 4px;
 }
-.product-item .remove-product {
-	position: absolute;
-	top: 5px;
-	left: 5px;
+.product-item:hover {
 	border: 1px solid #ccc;
-	padding-left: 6px;
-	padding-right: 6px;
-	outline-color: #ccc;
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(#f7f7f7));
-	background: -webkit-linear-gradient(#fff, #f7f7f7);
-	background: -moz-linear-gradient(#fff, #f7f7f7);
-	background: -ms-linear-gradient(#fff, #f7f7f7);
-	background: -o-linear-gradient(#fff, #f7f7f7);
-	background: linear-gradient(#fff, #f7f7f7);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-ms-border-radius: 2px;
-	-o-border-radius: 2px;
-	border-radius: 2px;
-	z-index: 99;
+	-webkit-box-shadow: 0 0 2px #ccc;
+	box-shadow: 0 0 2px #ccc;
 }
-.product-item .stock-warning {
-	color: #ee2347;
-	font-size: 11px;
-	text-align: left;
-	width: 175px;
-	margin: 0 auto;
+.product-item .add-to-cart {
+	visibility: hidden;
 }
-
 .product-item:hover .add-to-cart {
 	visibility: visible;
 }
+
 .product-item>a {
 	display: block;
 	width: 100%}
+
 .product-item>a:hover {
 	color: #00b7f1;
 	text-decoration: none;
+}
+
+
+
+
+.bg {
+  background: image-url('zen-stones-and-bamboo.jpg') no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 70%; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+.jumbotron {
+  margin-bottom: 0px;
+  height: 70%;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+  background:transparent;
 }
