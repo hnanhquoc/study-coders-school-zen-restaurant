@@ -4,9 +4,9 @@
 
 Submitted by: **Quoc**
 
-Time spent: **19** hours spent in total
+Time spent: **25** hours spent in total
 
-URL: **heroku-app-url**
+URL: **https://still-oasis-24706.herokuapp.com**
 
 ## User Stories
 
@@ -48,7 +48,7 @@ URL: **heroku-app-url**
 
 The following **additional** features are implemented:
 
-* [ ] Something nice you added.
+* Not yet
 
 The following **known issues**:
 
@@ -58,13 +58,19 @@ The following **known issues**:
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](path-to-your-GIF-file)
+![Video Walkthrough](Walkthrough.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+* Using AJAX to load datail item on click
+* Would be great if there's a authentication system (to manage user as well as their info and orders)
+* Sometime, I want to make animation to image or to add some transitions, but out of energy
+* Usually misunderstood between singular and plural variables name
+* Have to pay time to watch video over and over again
 
 ## License
 
